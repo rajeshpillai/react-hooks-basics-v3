@@ -13,7 +13,10 @@ export default function TodoItem({todo,onTodoDelete}) {
               ? <span className="badge badge-success">completed</span> 
               : <span className="badge badge-warning">pending</span>}
         </div>
-        <i onClick={handleDelete} className="fas fa-trash"></i>
+        <div className="d-flex justify-content-between">
+          <i onClick={handleDelete} className="p-4 fas fa-trash"></i>
+          <i class="fas fa-edit p-4"></i>
+        </div>
       </div>
     </div>
   )
