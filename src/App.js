@@ -13,6 +13,7 @@ import Counter from './components/counter';
 import Layout from './pages/layout';
 import MultipleStateUpdate from './components/stateupdate-multiple';
 import MultipleStatePropsUpdate from './components/state-multiple-props-update';
+import UseEffectDemo from './components/useeffect-demo';
 
 function App() {
   return (
@@ -33,9 +34,10 @@ function App() {
             <Route path ="/multple-state-props">
                <MultipleStatePropsUpdate/>
             </Route>
-
             
-            
+            <Route path ="/useeffect">
+               <UseEffectDemo />
+            </Route>
 
             <Route path="/counter">
                 <Counter />

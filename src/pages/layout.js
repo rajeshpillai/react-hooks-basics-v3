@@ -12,6 +12,7 @@ export default function Layout() {
       <NavLink className="navbar-brand" to="/counter">Counter</NavLink>
       <NavLink className="navbar-brand" to="/multple-state">Multiple State Update</NavLink>
       <NavLink className="navbar-brand" to="/multple-state-props">Multiple State Props Update</NavLink>
+      <NavLink className="navbar-brand" to="/useeffect">useEffect Demo</NavLink>
     </nav>
   )
 }
