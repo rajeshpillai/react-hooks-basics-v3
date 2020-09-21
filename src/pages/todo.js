@@ -23,12 +23,20 @@ export default function Todo() {
     setTodos([newTodo, ...todos]);
   }
 
+  const onTodoDelete = (todo) => {
+    let remainingTodos = todos.filter(t => {
+      return t.id != todo.id
+    });
+
+    setTodos([...remainingTodos]);
+  }
+
   return (
     <TodoApp>
       <div className="container">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoList data={todos} />
+        <TodoList data={todos} onTodoDelete={onTodoDelete} />
       </div>
     </TodoApp>
   )
