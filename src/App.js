@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ import Layout from './pages/layout';
 import MultipleStateUpdate from './components/stateupdate-multiple';
 import MultipleStatePropsUpdate from './components/state-multiple-props-update';
 import UseEffectDemo from './components/useeffect-demo';
+import Todo from './pages/todo';
 
 function App() {
   return (
@@ -26,6 +28,11 @@ function App() {
             <Route path ="/" exact>
                <h1>Hello React</h1>
             </Route>
+            
+            <Route path ="/todo">
+               <Todo/>
+            </Route>
+
 
             <Route path ="/multple-state">
                <MultipleStateUpdate/>
