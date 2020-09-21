@@ -6,13 +6,6 @@ export default function MultipleStateUpdate() {
   const [isLoading, setIsLoading] = useState(false)
   const [isUpdated, setIsUpdating] = useState(false);
 
-  // const [appState, setState] = useState({
-  //   isLoading:false,
-  //   isUpdated: false,
-  //   error: "",
-  //   counter: 0
-  // })
-
   const incr = () => {
     if (error.trim() != "") {
       setError("");
