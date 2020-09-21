@@ -1,15 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function useState(defaultValue) {
-  
-  const setterFunction = (newValue) => {
-    return newValue;
-  }
-  
-  let result = [defaultValue, setterFunction]
-
-  return result;
-} 
 
 function Counter() {
   //  alert("Function called!");
@@ -17,7 +7,6 @@ function Counter() {
   // const counter = counterResult[0];
   // const setCounter = counterResult[1];
   
-  debugger;
   const [counter, setCounter ] = useState(0); // [stateValue, updaterFunction]
   const [error, setError] = useState(undefined);
 
