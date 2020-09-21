@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import TodoItem from './todo-item';
 
-export default function TodoList(props) {
+export default function TodoList({data}) {
   return (
     <ul>
-      { props.data.map(todo => {
+      { data.map(todo => {
           return (
-            <li key={todo.id}>{todo.title}</li>
+           <TodoItem key={todo.id} todo={todo} />
           )
       })
       }
