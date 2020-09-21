@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 import {
   BrowserRouter as Router,
@@ -13,11 +14,11 @@ import Layout from './pages/layout';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid">
       <Router>
         <Layout />
        
-        <div>
+        <div className="content">
           <Switch>
             <Route path ="/" exact>
                <h1>Hello React</h1>
