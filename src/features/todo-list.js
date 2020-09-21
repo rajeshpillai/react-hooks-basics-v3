@@ -3,7 +3,7 @@ import TodoItem from './todo-item';
 
 export default function TodoList({data, onTodoDelete}) {
   return (
-    <ul>
+    <ul className="todos container">
       { data.map(todo => {
           return (
            <TodoItem key={todo.id} 

@@ -1,3 +1,21 @@
 .active {
   background-color: #ddd;
 }
+
+.todos {
+  padding:0;
+  margin:0;
+  list-style-type: none;  
+}
+.todo-item {
+  padding: 10px;
+  margin: 15px 0;
+}
+
+.todo-item:nth-child(1) {
+  margin-top: 10px;
+}
+
+.completed {
+  color: green;
+}

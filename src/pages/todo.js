@@ -7,9 +7,9 @@ export default function Todo() {
   const [todos, setTodos] = useState(
     [
       {id: 1, title: "Learn Elm", completed: true},
-      {id: 2, title: "Learn GoLang",completed: true},
-      {id: 3, title: "Learn Rust", completed: true},
-      {id: 4, title: "Learn to build a compiler",completed: true}
+      {id: 2, title: "Learn GoLang",completed: false},
+      {id: 3, title: "Learn Rust", completed: false},
+      {id: 4, title: "Learn to build a compiler",completed: false}
     ]
   )
 
@@ -33,7 +33,7 @@ export default function Todo() {
 
   return (
     <TodoApp>
-      <div className="container">
+      <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
         <TodoList data={todos} onTodoDelete={onTodoDelete} />

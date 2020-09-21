@@ -5,9 +5,16 @@ export default function TodoItem({todo,onTodoDelete}) {
     onTodoDelete(todo);
   }
   return (
-    <li key={todo.id}>
+    <div key={todo.id} className="card todo-item">
       {todo.title}
-      <i onClick={handleDelete} className="fas fa-trash"></i>
-    </li>
+      <div class="d-flex justify-content-between">
+        <div>
+          { todo.completed 
+              ? <span className="badge badge-success">completed</span> 
+              : <span className="badge badge-warning">pending</span>}
+        </div>
+        <i onClick={handleDelete} className="fas fa-trash"></i>
+      </div>
+    </div>
   )
 }

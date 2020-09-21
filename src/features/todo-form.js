@@ -15,7 +15,8 @@ export default function TodoForm(prop) {
 
   return (
    <form onSubmit={handleSubmit} >
-     <input type="text" 
+     <input type="text"
+      className="w-75" 
       onChange={handleChange}
       value={todoTitle}
       placeholder="what do you want to do today?"/>
