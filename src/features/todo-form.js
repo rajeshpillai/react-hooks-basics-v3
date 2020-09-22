@@ -9,6 +9,7 @@ export default function TodoForm(prop) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (todoTitle.length <= 0) return;
     prop.onTodoAdded(todoTitle);
     setTodoTitle("");
   }
