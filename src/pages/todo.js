@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import TodoApp from '../features/todo-app';
 import TodoForm from '../features/todo-form';
 import TodoList from '../features/todo-list';
+import TodoFilter from '../features/todo-filter';
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 
@@ -20,6 +21,8 @@ export default function Todo() {
   // )
 
   const [todos, setTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   //1. Let's get the data from the API
@@ -119,6 +122,8 @@ export default function Todo() {
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
+        <TodoFilter />
+
         { !isLoaded && <h4>Loading...</h4>}
         { isLoaded &&
           <TodoList 
