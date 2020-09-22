@@ -44,6 +44,12 @@ export default function Todo() {
           //d.percentage_completed = Math.floor(Math.random() * 100) + 1
           d.percentage_completed = randomFromRange(25, 100);
 
+          // Task: Bookmark todos
+          // Steps for the task
+          // 1. d.bookmarked: default value: false
+          // 2. Add buttons to filter todos
+          //    ALL |  COMPLETED  |  IN-COMPLETE  | BOOKMARKED
+
           return d;
         })
         setTodos([...transformedData]);
