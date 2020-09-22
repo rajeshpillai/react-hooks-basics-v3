@@ -4,6 +4,7 @@ import TodoItem from './todo-item';
 export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo}) {
   return (
     <div className="todos container">
+      { data.length <= 0 && <h4>No todos! Please create some.</h4>}
       { data.map(todo => {
           return (
            <TodoItem key={todo.id} 
