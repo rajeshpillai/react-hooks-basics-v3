@@ -31,12 +31,25 @@ export default function Todo() {
     setTodos([...remainingTodos]);
   }
 
+  function onTodoEdit(title, todoId) {
+    let updatedTodos = todos.map(todo => {
+      if (todo.id == todoId) {
+        todo.title = title;
+      }
+      return todo;
+    });
+
+    setTodos([...updatedTodos])
+  }
+
   return (
     <TodoApp>
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoList data={todos} onTodoDelete={onTodoDelete} />
+        <TodoList data={todos} 
+          onTodoEdit={onTodoEdit}
+          onTodoDelete={onTodoDelete} />
       </div>
     </TodoApp>
   )
