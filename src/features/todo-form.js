@@ -4,7 +4,7 @@ export default function TodoForm(prop) {
   const [todoTitle, setTodoTitle] =  useState("");
   const titleRef = useRef();
 
-  // Run only once
+  // Run only once : Set focus to title input
   useEffect(() => {
     titleRef.current.focus();
   }, [])

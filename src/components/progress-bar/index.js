@@ -20,7 +20,7 @@ export default function ProgressBar({percent, width, height=9}) {
         color: "white",
         backgroundColor: getColor(percent)
       }}>
-          {percent}
+          <span>{percent}%</span>
       </div>
     </div>
   )
