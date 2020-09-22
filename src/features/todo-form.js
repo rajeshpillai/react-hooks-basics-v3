@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
 export default function TodoForm(prop) {
   const [todoTitle, setTodoTitle] =  useState("");
@@ -21,6 +21,7 @@ export default function TodoForm(prop) {
       onChange={handleChange}
       value={todoTitle}
       placeholder="what do you want to do today?"/>
+
      <button type="submit">submit</button>
    </form>
   )

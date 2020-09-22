@@ -6,10 +6,10 @@ import TodoList from '../features/todo-list';
 export default function Todo() {
   const [todos, setTodos] = useState(
     [
-      {id: 1, title: "Learn Elm", completed: true},
-      {id: 2, title: "Learn GoLang",completed: false},
-      {id: 3, title: "Learn Rust", completed: false},
-      {id: 4, title: "Learn to build a compiler",completed: false}
+      {id: 1, title: "Learn Elm", completed: true, percentage_completed: 100},
+      {id: 2, title: "Learn GoLang",completed: false, percentage_completed:25},
+      {id: 3, title: "Learn Rust", completed: false, percentage_completed: 75},
+      {id: 4, title: "Learn to build a compiler",completed: false, percentage_completed: 20}
     ]
   )
 

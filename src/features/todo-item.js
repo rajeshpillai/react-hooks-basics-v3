@@ -1,4 +1,6 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef} from 'react';
+import ProgressBar from '../components/progress-bar';
+
 
 export default function TodoItem({todo,onTodoDelete, onTodoEdit, onToggleTodo}) {
   
@@ -59,14 +61,13 @@ export default function TodoItem({todo,onTodoDelete, onTodoEdit, onToggleTodo}) 
           <i onClick={handleDelete} className="p-4 fas fa-trash"></i>
           <i onClick={()=>handleEdit(todo)} 
              className="fas fa-edit p-4"></i>
-          
-          {/* <i onClick={handleEdit(todo)}  
-             class="fas fa-edit p-4"></i> */}
-                          
-          {/* <i onClick={function () { handleEdit(todo)}} 
-             class="fas fa-edit p-4"></i> */}
         </div>
       </div>
+      <ProgressBar 
+        percent={todo.percentage_completed} 
+        width={400}
+        height={20}
+      />
     </div>
   )
 }
