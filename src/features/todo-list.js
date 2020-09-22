@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './todo-item';
 import PropTypes from 'prop-types';
 
-export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo}) {
+export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleBookmark, onToggleTodo}) {
 
   if (!data) {
      return (<h4>No data provided!</h4>)
@@ -17,6 +17,7 @@ export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo})
             todo={todo} 
             onTodoDelete = {onTodoDelete}
             onToggleTodo = {onToggleTodo}
+            onToggleBookmark = {onToggleBookmark}
             onTodoEdit={onTodoEdit}
             />
           )

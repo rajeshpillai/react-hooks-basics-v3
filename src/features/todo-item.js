@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import ProgressBar from '../components/progress-bar';
 
 
-export default function TodoItem({todo,onTodoDelete, onTodoEdit, onToggleTodo}) {
+export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdit, onToggleTodo}) {
   
   const [edit, toggleEdit] = useState(false);
 
@@ -39,11 +39,20 @@ export default function TodoItem({todo,onTodoDelete, onTodoEdit, onToggleTodo}) 
     }
   }
 
+  const toggleBookmark = () => {
+    onToggleBookmark(todo);
+  }
+
+  let bookmarkClass = todo.bookmarked ? "fas fa-bookmark" : "far fa-bookmark";
+
   return (
     <div key={todo.id} className="card todo-item">
       {
         !edit  &&
-        <span onDoubleClick={toggleTodo} className="todo-title">{todo.title}</span>
+        <div>
+          <span onDoubleClick={toggleTodo} className="todo-title">{todo.title}</span>
+          <i onClick={toggleBookmark} className={`p-4 ${bookmarkClass}`}></i>
+        </div>
       }
 
       {

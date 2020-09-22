@@ -43,7 +43,7 @@ export default function Todo() {
           // Assign random percentage between 25 and 100
           //d.percentage_completed = Math.floor(Math.random() * 100) + 1
           d.percentage_completed = randomFromRange(25, 100);
-
+          d.bookmarked = false;
           // Task: Bookmark todos
           // Steps for the task
           // 1. d.bookmarked: default value: false
@@ -103,6 +103,17 @@ export default function Todo() {
     setTodos([...updatedTodos]);
   }
 
+  const onToggleBookmark = (todo) => {
+    let updatedTodos = todos.map(t => {
+      if (todo.id == t.id) {
+        todo.bookmarked = !todo.bookmarked;
+      }
+      return t;
+    });
+
+    setTodos([...updatedTodos]);
+  }
+
   return (
     <TodoApp>
       <div className="container mt-5 vh-100">
@@ -114,6 +125,7 @@ export default function Todo() {
             data={todos} 
             onTodoEdit={onTodoEdit}
             onToggleTodo = {onToggleTodo}
+            onToggleBookmark = {onToggleBookmark}
             onTodoDelete={onTodoDelete} />
         }
       </div>
