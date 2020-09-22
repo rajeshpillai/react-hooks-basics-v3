@@ -1,7 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 export default function TodoForm(prop) {
   const [todoTitle, setTodoTitle] =  useState("");
+  const titleRef = useRef();
+
+  // Run only once
+  useEffect(() => {
+    titleRef.current.focus();
+  }, [])
   
   const handleChange = (e) => {
     setTodoTitle(e.target.value)
@@ -17,6 +23,7 @@ export default function TodoForm(prop) {
   return (
    <form onSubmit={handleSubmit} >
      <input type="text"
+      ref = {titleRef}
       className="w-75" 
       onChange={handleChange}
       value={todoTitle}

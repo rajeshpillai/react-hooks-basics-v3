@@ -3,6 +3,11 @@ import TodoItem from './todo-item';
 import PropTypes from 'prop-types';
 
 export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo}) {
+
+  if (!data) {
+     return (<h4>No data provided!</h4>)
+  }
+
   return (
     <div className="todos container">
       { data.length <= 0 && <h4>No todos! Please create some.</h4>}
