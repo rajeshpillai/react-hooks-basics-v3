@@ -9,7 +9,7 @@ export default function ProgressBar({percent, width, height=9}) {
 
   const getColor = (per) => {
     if (per == 100) return "green";
-    return per > 50 ? "lightgreen": "red";
+    return per > 50 ? "orange": "red";
   }
 
   return (
@@ -17,10 +17,13 @@ export default function ProgressBar({percent, width, height=9}) {
       <div style={{
         width: getWidthAsPercent(),
         height: height,
-        color: "white",
+        color: "#ddd",
         backgroundColor: getColor(percent)
       }}>
-          <span>{percent}%</span>
+          <span 
+            style={{fontSize:"0.6em", fontWeight:"bold"}}>
+              {percent}%
+          </span>
       </div>
     </div>
   )
