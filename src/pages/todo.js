@@ -20,6 +20,7 @@ export default function Todo() {
   // )
 
   const [todos, setTodos] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   //1. Let's get the data from the API
   //   We can use third party library like "axios"
@@ -46,6 +47,7 @@ export default function Todo() {
           return d;
         })
         setTodos([...transformedData]);
+        setIsLoaded(true);
      });
 
      // fetch: using async/await (new approach)
@@ -100,11 +102,14 @@ export default function Todo() {
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoList 
-          data={todos} 
-          onTodoEdit={onTodoEdit}
-          onToggleTodo = {onToggleTodo}
-          onTodoDelete={onTodoDelete} />
+        { !isLoaded && <h4>Loading...</h4>}
+        { isLoaded &&
+          <TodoList 
+            data={todos} 
+            onTodoEdit={onTodoEdit}
+            onToggleTodo = {onToggleTodo}
+            onTodoDelete={onTodoDelete} />
+        }
       </div>
     </TodoApp>
   )
