@@ -155,7 +155,7 @@ export default function Todo() {
     }
   }, [todos])
 
-  let todoData = filter == "all" ?todos : filteredTodos;
+  let todoData = filter == "all" ? todos : filteredTodos;
 
   return (
     <TodoApp>
@@ -163,7 +163,7 @@ export default function Todo() {
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
         <TodoFilter 
-            onFilterBookmark ={onFilterBookmark}
+          onFilterBookmark ={onFilterBookmark}
             onFilterClear = {onFilterClear}
             onFilterCompleted = {onFilterCompleted}
             onFilterInComplete = {onFilterInComplete}
@@ -172,6 +172,7 @@ export default function Todo() {
         { !isLoaded && <h4>Loading...</h4>}
         { isLoaded &&
           <TodoList 
+            className="animate__animated animate__swing"
             data={todoData} 
             onTodoEdit={onTodoEdit}
             onToggleTodo = {onToggleTodo}

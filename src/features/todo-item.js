@@ -10,6 +10,7 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this item?")) {
+      
       onTodoDelete(todo);
     }
   }
@@ -44,7 +45,7 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
   }
 
   let bookmarkClass = todo.bookmarked 
-      ? "fas fa-bookmark" : "far fa-bookmark";
+      ? "fas fa-bookmark animate__animated animate__swing" : "far fa-bookmark";
 
   return (
     <div key={todo.id} className="card todo-item">

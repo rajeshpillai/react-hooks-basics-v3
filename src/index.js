@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import "./styles/animate.css";
 
 const hooks   = [];
 let hookCalls = -1;
