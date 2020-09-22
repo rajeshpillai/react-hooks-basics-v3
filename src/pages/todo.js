@@ -60,7 +60,8 @@ export default function Todo() {
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoList data={todos} 
+        <TodoList 
+          data={todos} 
           onTodoEdit={onTodoEdit}
           onToggleTodo = {onToggleTodo}
           onTodoDelete={onTodoDelete} />

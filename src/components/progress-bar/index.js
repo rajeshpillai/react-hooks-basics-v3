@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 export default function ProgressBar({percent, width, height=9}) {
 
@@ -23,4 +24,8 @@ export default function ProgressBar({percent, width, height=9}) {
       </div>
     </div>
   )
+}
+
+ProgressBar.propTypes = {
+  percent: PropTypes.number.isRequired
 }

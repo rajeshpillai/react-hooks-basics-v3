@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from './todo-item';
+import PropTypes from 'prop-types';
 
 export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo}) {
   return (
@@ -18,4 +19,10 @@ export default function TodoList({data, onTodoDelete, onTodoEdit, onToggleTodo})
       }
     </div>
   )
+}
+
+
+TodoList.propTypes = {
+  data: PropTypes.array.isRequired,
+  onTodoDelete: PropTypes.func
 }
