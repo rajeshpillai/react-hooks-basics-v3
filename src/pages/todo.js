@@ -5,6 +5,10 @@ import TodoList from '../features/todo-list';
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 
+const randomFromRange = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)  + min);
+}
+
 export default function Todo() {
   // const [todos, setTodos] = useState(
   //   [
@@ -29,16 +33,22 @@ export default function Todo() {
     //   console.log("data: ", data);
     // })
 
+    // fetch: using promise syntax
     fetch(API_TODOS)
       .then(response => response.json())
       .then(data => {
         console.log(data);
         let transformedData = data.map(d => {
-          d.percentage_completed = Math.floor(Math.random() * 100) + 25
+          // Assign random percentage between 25 and 100
+          //d.percentage_completed = Math.floor(Math.random() * 100) + 1
+          d.percentage_completed = randomFromRange(25, 100);
+
           return d;
         })
         setTodos([...transformedData]);
-      })
+     });
+
+     // fetch: using async/await (new approach)
 
   },[])
 
