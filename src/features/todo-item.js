@@ -43,7 +43,8 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
     onToggleBookmark(todo);
   }
 
-  let bookmarkClass = todo.bookmarked ? "fas fa-bookmark" : "far fa-bookmark";
+  let bookmarkClass = todo.bookmarked 
+      ? "fas fa-bookmark" : "far fa-bookmark";
 
   return (
     <div key={todo.id} className="card todo-item">
@@ -51,7 +52,8 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
         !edit  &&
         <div>
           <span onDoubleClick={toggleTodo} className="todo-title">{todo.title}</span>
-          <i onClick={toggleBookmark} className={`p-4 ${bookmarkClass}`}></i>
+          <i onClick={toggleBookmark} 
+              className={`p-4 ${bookmarkClass}`}></i>
         </div>
       }
 

@@ -22,6 +22,7 @@ export default function Todo() {
 
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -117,17 +118,58 @@ export default function Todo() {
     setTodos([...updatedTodos]);
   }
 
+  
+  const onFilterClear = () => {
+    setFilteredTodos([]);
+    setFilter("all");
+  }
+  
+  const onFilterBookmark = () => {
+    const bookmarkedTodos = todos.filter(t => t.bookmarked);
+    setFilteredTodos([...bookmarkedTodos]);
+    setFilter("bookmarked");
+  }
+
+  const onFilterCompleted = () => {
+    const completedTodos = todos.filter(t => t.completed);
+    setFilteredTodos([...completedTodos]);
+    setFilter("completed");
+  }
+
+  const onFilterInComplete = () => {
+    const incompleteTodos = todos.filter(t => !t.completed);
+    setFilteredTodos([...incompleteTodos]);
+    setFilter("incomplete");
+  }
+
+  useEffect(() => {
+    if (filter == "bookmarked") {
+      onFilterBookmark();
+    } else if (filter == "completed") {
+      onFilterCompleted();
+    } else if (filter == "incomplete") {
+      onFilterInComplete();
+    }
+  }, [todos])
+
+  let todoData = filter == "all" ?todos : filteredTodos;
+
   return (
     <TodoApp>
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoFilter />
+        <TodoFilter 
+            onFilterBookmark ={onFilterBookmark}
+            onFilterClear = {onFilterClear}
+            onFilterCompleted = {onFilterCompleted}
+            onFilterInComplete = {onFilterInComplete}
+        />
 
         { !isLoaded && <h4>Loading...</h4>}
         { isLoaded &&
           <TodoList 
-            data={todos} 
+            data={todoData} 
             onTodoEdit={onTodoEdit}
             onToggleTodo = {onToggleTodo}
             onToggleBookmark = {onToggleBookmark}
