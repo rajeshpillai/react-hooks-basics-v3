@@ -32,6 +32,7 @@ export default function Todo() {
   }
 
   function onTodoEdit(title, todoId) {
+    // alert(`${title} - ${todoId}`);
     let updatedTodos = todos.map(todo => {
       if (todo.id == todoId) {
         todo.title = title;
