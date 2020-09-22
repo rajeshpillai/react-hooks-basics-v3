@@ -142,6 +142,9 @@ export default function Todo() {
     setFilter("incomplete");
   }
 
+  // Refresh filters if todos/ changes like added, 
+  //  bookmarked, mark as complete etc.
+  //  (any code with if/else can be optimized using common patterns)
   useEffect(() => {
     if (filter == "bookmarked") {
       onFilterBookmark();
