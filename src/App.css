@@ -12,6 +12,11 @@
   margin: 15px 0;
 }
 
+.todo-title {
+  user-select: none;
+  cursor: pointer;
+}
+
 .todo-item:nth-child(1) {
   margin-top: 10px;
 }

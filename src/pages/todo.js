@@ -42,6 +42,18 @@ export default function Todo() {
     setTodos([...updatedTodos])
   }
 
+  // Toggle todo between completed and not completed
+  const onToggleTodo = (todo) => {
+    let updatedTodos = todos.map(t => {
+      if (todo.id == t.id) {
+        todo.completed = !todo.completed;
+      }
+      return t;
+    });
+
+    setTodos([...updatedTodos]);
+  }
+
   return (
     <TodoApp>
       <div className="container mt-5 vh-100">
@@ -49,6 +61,7 @@ export default function Todo() {
         <TodoForm onTodoAdded={onTodoAdded} />
         <TodoList data={todos} 
           onTodoEdit={onTodoEdit}
+          onToggleTodo = {onToggleTodo}
           onTodoDelete={onTodoDelete} />
       </div>
     </TodoApp>
