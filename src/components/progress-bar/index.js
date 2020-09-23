@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
-// import GlobalContext from "../../context/global-context";
-import Context from "../../context/todo-context";
+import GlobalContext from "../../context/global-context";
 
 export default function ProgressBar({ percent, width, height = 9 }) {
-  // const GlobalData = useContext(GlobalContext);
+  const GlobalData = useContext(GlobalContext);
 
-  const { global_data } = useContext(Context);
+  // const { global_data } = useContext(Context);
   // console.log("pvContext", global_data, setGlobalData);
 
   const getWidthAsPercent = () => {
@@ -29,7 +28,7 @@ export default function ProgressBar({ percent, width, height = 9 }) {
     >
       {/* {GlobalData.theme} */}
       {/* {pvContext.theme} */}
-      {global_data.theme}
+      {GlobalData.theme}
       <div
         style={{
           width: getWidthAsPercent(),

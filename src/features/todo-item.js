@@ -1,17 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import ProgressBar from '../components/progress-bar';
+import TodoContext from '../context/todo-context';
 
-
-export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdit, onToggleTodo}) {
+export default function TodoItem({todo}) {
   
   const [edit, toggleEdit] = useState(false);
+  const todoProvider = useContext(TodoContext);
+  
 
   const titleRef = useRef();
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this item?")) {
-      
-      onTodoDelete(todo);
+      todoProvider.onTodoDelete(todo);
     }
   }
 
@@ -23,7 +24,7 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
   }
 
   const toggleTodo = () => {
-    onToggleTodo(todo);
+    todoProvider.onToggleTodo(todo);
   }
 
   const handleKeyUp = (e) => {
@@ -31,7 +32,7 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
     // esc key = 27
     console.log(e.keyCode);
     if (e.keyCode == 13) {
-      onTodoEdit(titleRef.current.value, todo.id);
+      todoProvider.onTodoEdit(titleRef.current.value, todo.id);
       toggleEdit(ps => !ps);
     } else if (e.keyCode == 27) {
       // toggleEdit(!edit)
@@ -41,7 +42,7 @@ export default function TodoItem({todo,onTodoDelete, onToggleBookmark, onTodoEdi
   }
 
   const toggleBookmark = () => {
-    onToggleBookmark(todo);
+    todoProvider.onToggleBookmark(todo);
   }
 
   let bookmarkClass = todo.bookmarked 

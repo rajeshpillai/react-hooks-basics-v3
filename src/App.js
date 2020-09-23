@@ -15,14 +15,13 @@ import Todo from "./pages/todo";
 
 import GlobalContext from "./context/global-context";
 
-const APP_DATA = {
-  theme: "dark", // dark or light
-  language: "english"
-};
+// const APP_DATA = {
+//   theme: "dark", // dark or light
+//   language: "english"
+// };
 
 function App() {
-  // const GlobalData = useContext(GlobalContext);
-  
+  const GlobalData = useContext(GlobalContext);
 
   // useEffect(() => {
   //   setGlobalData({
@@ -33,7 +32,7 @@ function App() {
 
   return (
     <div className="container-fluid">
-      {/* {GlobalData.language} - {GlobalData.theme} */}
+      {GlobalData.language} - {GlobalData.theme}
       {/* {APP_DATA.language} - {APP_DATA.theme} */}
       <Router>
         <Layout />

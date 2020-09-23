@@ -3,6 +3,7 @@ import TodoApp from "../features/todo-app";
 import TodoForm from "../features/todo-form";
 import TodoList from "../features/todo-list";
 import TodoFilter from "../features/todo-filter";
+
 import TodoContext from "../context/todo-context";
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
@@ -40,16 +41,6 @@ export default function Todo() {
   //   We can use third party library like "axios"
   //   or we can use built in FETCH API
   useEffect(() => {
-    // let resultPromise = fetch(API_TODOS);
-
-    // let response = resultPromise.then(response => {
-    //   return response.json();  // This is also a promise
-    // })
-    // let data = response.then(data => {
-    //   console.log("data: ", data);
-    // })
-
-    // async/await: new approach
 
     const fetchData = async () => {
       const response = await fetch(API_TODOS);
@@ -167,14 +158,20 @@ export default function Todo() {
 
   let todoData = filter == "all" ? todos : filteredTodos;
 
+  const todoProvider = {
+    onTodoDelete: onTodoDelete,
+    onToggleTodo: onToggleTodo,
+    onTodoEdit,
+    onToggleBookmark
+  }
+
   return (
 
-    <TodoContext.Provider value={{ global_data, setGlobalData }}>
+    <TodoContext.Provider value={todoProvider}>
       <TodoApp>
         {global_data.language} - {global_data.theme}
 
         <div className="container mt-5 vh-100">
-          <h2><i className="fas fa-shopping-basket"></i>BUCKET LIST</h2>
           <div>
             <input
               type="button"
@@ -182,6 +179,7 @@ export default function Todo() {
               onClick={toggleTheme}
             />
           </div>
+          <h2><i className="fas fa-shopping-basket"></i>BUCKET LIST</h2>
           <TodoForm onTodoAdded={onTodoAdded} />
           <TodoFilter
             onFilterBookmark={onFilterBookmark}
@@ -198,7 +196,6 @@ export default function Todo() {
               onTodoEdit={onTodoEdit}
               onToggleTodo={onToggleTodo}
               onToggleBookmark={onToggleBookmark}
-              onTodoDelete={onTodoDelete}
             />
           )}
         </div>
