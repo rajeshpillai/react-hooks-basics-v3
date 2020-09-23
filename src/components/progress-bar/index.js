@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types';
 
+import GlobalContext from '../../context/global-context';
+
 export default function ProgressBar({percent, width, height=9}) {
+
+  const GlobalData = useContext(GlobalContext);
 
   const getWidthAsPercent = () => {
     return Number((width * percent / 100))
@@ -14,6 +18,7 @@ export default function ProgressBar({percent, width, height=9}) {
 
   return (
     <div style={{border: "solid 1px lightgray", width: width, backgroundColor:"lightgray"}}>
+      {GlobalData.theme}
       <div style={{
         width: getWidthAsPercent(),
         height: height,

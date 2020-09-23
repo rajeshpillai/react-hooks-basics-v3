@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -17,9 +17,13 @@ import MultipleStatePropsUpdate from './components/state-multiple-props-update';
 import UseEffectDemo from './components/useeffect-demo';
 import Todo from './pages/todo';
 
+import GlobalContext from './context/global-context';
+
 function App() {
+  const GlobalData = useContext(GlobalContext);
   return (
     <div className="container-fluid">
+      {GlobalData.language} - {GlobalData.theme}
       <Router>
         <Layout />
        
