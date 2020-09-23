@@ -29,9 +29,9 @@ export default function Todo() {
   //1. Let's get the data from the API
   //   We can use third party library like "axios"
   //   or we can use built in FETCH API
-  useEffect(()=> {
+  useEffect(async ()=> {
     // let resultPromise = fetch(API_TODOS);
-    
+
     // let response = resultPromise.then(response => {
     //   return response.json();  // This is also a promise
     // })
@@ -39,29 +39,42 @@ export default function Todo() {
     //   console.log("data: ", data);
     // })
 
+
+    // async/await: new approach
+
+    const response = await fetch(API_TODOS);
+    const data = await response.json();    
+
+    let transformedData = data.map(d => {
+      d.percentage_completed = randomFromRange(25, 100);
+      d.bookmarked = false;
+      return d;
+    })
+    setTodos([...transformedData]);
+    setIsLoaded(true);
+
+
     // fetch: using promise syntax
-    fetch(API_TODOS)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        let transformedData = data.map(d => {
-          // Assign random percentage between 25 and 100
-          //d.percentage_completed = Math.floor(Math.random() * 100) + 1
-          d.percentage_completed = randomFromRange(25, 100);
-          d.bookmarked = false;
-          // Task: Bookmark todos
-          // Steps for the task
-          // 1. d.bookmarked: default value: false
-          // 2. Add buttons to filter todos
-          //    ALL |  COMPLETED  |  IN-COMPLETE  | BOOKMARKED
+    // fetch(API_TODOS)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     let transformedData = data.map(d => {
+    //       // Assign random percentage between 25 and 100
+    //       //d.percentage_completed = Math.floor(Math.random() * 100) + 1
+    //       d.percentage_completed = randomFromRange(25, 100);
+    //       d.bookmarked = false;
+    //       // Task: Bookmark todos
+    //       // Steps for the task
+    //       // 1. d.bookmarked: default value: false
+    //       // 2. Add buttons to filter todos
+    //       //    ALL |  COMPLETED  |  IN-COMPLETE  | BOOKMARKED
 
-          return d;
-        })
-        setTodos([...transformedData]);
-        setIsLoaded(true);
-     });
-
-     // fetch: using async/await (new approach)
+    //       return d;
+    //     })
+    //     setTodos([...transformedData]);
+    //     setIsLoaded(true);
+    //  });
 
   },[])
 
