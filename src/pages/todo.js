@@ -29,7 +29,7 @@ export default function Todo() {
   //1. Let's get the data from the API
   //   We can use third party library like "axios"
   //   or we can use built in FETCH API
-  useEffect(async ()=> {
+  useEffect(()=> {
     // let resultPromise = fetch(API_TODOS);
 
     // let response = resultPromise.then(response => {
@@ -39,20 +39,24 @@ export default function Todo() {
     //   console.log("data: ", data);
     // })
 
-
     // async/await: new approach
 
-    const response = await fetch(API_TODOS);
-    const data = await response.json();    
+    const fetchData = async () => {
+      const response = await fetch(API_TODOS);
+      const data = await response.json();    
+  
+      let transformedData = data.map(d => {
+        d.percentage_completed = randomFromRange(25, 100);
+        d.bookmarked = false;
+        return d;
+      })
+      setTodos([...transformedData]);
+      setIsLoaded(true);
+      console.log("DATA:", data);
+    }
 
-    let transformedData = data.map(d => {
-      d.percentage_completed = randomFromRange(25, 100);
-      d.bookmarked = false;
-      return d;
-    })
-    setTodos([...transformedData]);
-    setIsLoaded(true);
-
+    fetchData();
+    
 
     // fetch: using promise syntax
     // fetch(API_TODOS)
@@ -75,6 +79,8 @@ export default function Todo() {
     //     setTodos([...transformedData]);
     //     setIsLoaded(true);
     //  });
+
+    
 
   },[])
 
