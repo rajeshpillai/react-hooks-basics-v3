@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 // import GlobalContext from "../../context/global-context";
-import Context from "../../context/context";
+import Context from "../../context/todo-context";
 
 export default function ProgressBar({ percent, width, height = 9 }) {
   // const GlobalData = useContext(GlobalContext);

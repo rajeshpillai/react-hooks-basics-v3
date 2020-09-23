@@ -15,9 +15,6 @@ import Todo from "./pages/todo";
 
 import GlobalContext from "./context/global-context";
 
-import PvContext from "./context/context";
-import { tsExternalModuleReference } from "@babel/types";
-
 const APP_DATA = {
   theme: "dark", // dark or light
   language: "english"
@@ -25,7 +22,7 @@ const APP_DATA = {
 
 function App() {
   // const GlobalData = useContext(GlobalContext);
-  const [global_data, setGlobalData] = useState(APP_DATA);
+  
 
   // useEffect(() => {
   //   setGlobalData({
@@ -36,42 +33,39 @@ function App() {
 
   return (
     <div className="container-fluid">
-      <PvContext.Provider value={{ global_data, setGlobalData }}>
-        {/* {GlobalData.language} - {GlobalData.theme} */}
-        {/* {APP_DATA.language} - {APP_DATA.theme} */}
-        {global_data.language} - {global_data.theme}
-        <Router>
-          <Layout />
+      {/* {GlobalData.language} - {GlobalData.theme} */}
+      {/* {APP_DATA.language} - {APP_DATA.theme} */}
+      <Router>
+        <Layout />
 
-          <div className="content">
-            <Switch>
-              <Route path="/" exact>
-                <h1>Hello React</h1>
-              </Route>
+        <div className="content">
+          <Switch>
+            <Route path="/" exact>
+              <h1>Hello React</h1>
+            </Route>
 
-              <Route path="/todo">
-                <Todo />
-              </Route>
+            <Route path="/todo">
+              <Todo />
+            </Route>
 
-              <Route path="/multple-state">
-                <MultipleStateUpdate />
-              </Route>
+            <Route path="/multple-state">
+              <MultipleStateUpdate />
+            </Route>
 
-              <Route path="/multple-state-props">
-                <MultipleStatePropsUpdate />
-              </Route>
+            <Route path="/multple-state-props">
+              <MultipleStatePropsUpdate />
+            </Route>
 
-              <Route path="/useeffect">
-                <UseEffectDemo />
-              </Route>
+            <Route path="/useeffect">
+              <UseEffectDemo />
+            </Route>
 
-              <Route path="/counter">
-                <Counter />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </PvContext.Provider>
+            <Route path="/counter">
+              <Counter />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

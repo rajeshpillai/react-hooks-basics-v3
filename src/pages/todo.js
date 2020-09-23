@@ -3,7 +3,7 @@ import TodoApp from "../features/todo-app";
 import TodoForm from "../features/todo-form";
 import TodoList from "../features/todo-list";
 import TodoFilter from "../features/todo-filter";
-import Context from "../context/context";
+import TodoContext from "../context/todo-context";
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 
@@ -11,7 +11,13 @@ const randomFromRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+const APP_DATA = {
+  theme: "dark", // dark or light
+  language: "english"
+};
+
 export default function Todo() {
+
   // const [todos, setTodos] = useState(
   //   [
   //     {id: 1, title: "Learn Elm", completed: true, percentage_completed: 100},
@@ -26,7 +32,9 @@ export default function Todo() {
   const [filter, setFilter] = useState("all");
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const { global_data, setGlobalData } = useContext(Context);
+  
+  const [global_data, setGlobalData] = useState(APP_DATA);
+  
 
   //1. Let's get the data from the API
   //   We can use third party library like "axios"
@@ -58,27 +66,6 @@ export default function Todo() {
 
     fetchData();
 
-    // fetch: using promise syntax
-    // fetch(API_TODOS)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     let transformedData = data.map(d => {
-    //       // Assign random percentage between 25 and 100
-    //       //d.percentage_completed = Math.floor(Math.random() * 100) + 1
-    //       d.percentage_completed = randomFromRange(25, 100);
-    //       d.bookmarked = false;
-    //       // Task: Bookmark todos
-    //       // Steps for the task
-    //       // 1. d.bookmarked: default value: false
-    //       // 2. Add buttons to filter todos
-    //       //    ALL |  COMPLETED  |  IN-COMPLETE  | BOOKMARKED
-
-    //       return d;
-    //     })
-    //     setTodos([...transformedData]);
-    //     setIsLoaded(true);
-    //  });
   }, []);
 
   const onTodoAdded = todoTitle => {
@@ -181,36 +168,41 @@ export default function Todo() {
   let todoData = filter == "all" ? todos : filteredTodos;
 
   return (
-    <TodoApp>
-      <div className="container mt-5 vh-100">
-        <h2>Todos</h2>
-        <div>
-          <input
-            type="button"
-            value={`Toggle Theme- ${global_data.theme}`}
-            onClick={toggleTheme}
-          />
-        </div>
-        <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoFilter
-          onFilterBookmark={onFilterBookmark}
-          onFilterClear={onFilterClear}
-          onFilterCompleted={onFilterCompleted}
-          onFilterInComplete={onFilterInComplete}
-        />
 
-        {!isLoaded && <h4>Loading...</h4>}
-        {isLoaded && (
-          <TodoList
-            className="animate__animated animate__swing"
-            data={todoData}
-            onTodoEdit={onTodoEdit}
-            onToggleTodo={onToggleTodo}
-            onToggleBookmark={onToggleBookmark}
-            onTodoDelete={onTodoDelete}
+    <TodoContext.Provider value={{ global_data, setGlobalData }}>
+      <TodoApp>
+        {global_data.language} - {global_data.theme}
+
+        <div className="container mt-5 vh-100">
+          <h2><i className="fas fa-shopping-basket"></i>BUCKET LIST</h2>
+          <div>
+            <input
+              type="button"
+              value={`Toggle Theme- ${global_data.theme}`}
+              onClick={toggleTheme}
+            />
+          </div>
+          <TodoForm onTodoAdded={onTodoAdded} />
+          <TodoFilter
+            onFilterBookmark={onFilterBookmark}
+            onFilterClear={onFilterClear}
+            onFilterCompleted={onFilterCompleted}
+            onFilterInComplete={onFilterInComplete}
           />
-        )}
-      </div>
-    </TodoApp>
+
+          {!isLoaded && <h4>Loading...</h4>}
+          {isLoaded && (
+            <TodoList
+              className="animate__animated animate__swing"
+              data={todoData}
+              onTodoEdit={onTodoEdit}
+              onToggleTodo={onToggleTodo}
+              onToggleBookmark={onToggleBookmark}
+              onTodoDelete={onTodoDelete}
+            />
+          )}
+        </div>
+      </TodoApp>
+    </TodoContext.Provider>
   );
 }
