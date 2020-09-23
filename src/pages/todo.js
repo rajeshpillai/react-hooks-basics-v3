@@ -1,14 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import TodoApp from '../features/todo-app';
-import TodoForm from '../features/todo-form';
-import TodoList from '../features/todo-list';
-import TodoFilter from '../features/todo-filter';
+import React, { useState, useEffect, useContext } from "react";
+import TodoApp from "../features/todo-app";
+import TodoForm from "../features/todo-form";
+import TodoList from "../features/todo-list";
+import TodoFilter from "../features/todo-filter";
+import Context from "../context/context";
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 
 const randomFromRange = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)  + min);
-}
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 export default function Todo() {
   // const [todos, setTodos] = useState(
@@ -25,11 +26,12 @@ export default function Todo() {
   const [filter, setFilter] = useState("all");
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const { global_data, setGlobalData } = useContext(Context);
 
   //1. Let's get the data from the API
   //   We can use third party library like "axios"
   //   or we can use built in FETCH API
-  useEffect(()=> {
+  useEffect(() => {
     // let resultPromise = fetch(API_TODOS);
 
     // let response = resultPromise.then(response => {
@@ -43,19 +45,18 @@ export default function Todo() {
 
     const fetchData = async () => {
       const response = await fetch(API_TODOS);
-      const data = await response.json();    
-  
+      const data = await response.json();
+
       let transformedData = data.map(d => {
         d.percentage_completed = randomFromRange(25, 100);
         d.bookmarked = false;
         return d;
-      })
+      });
       setTodos([...transformedData]);
       setIsLoaded(true);
-    }
+    };
 
     fetchData();
-    
 
     // fetch: using promise syntax
     // fetch(API_TODOS)
@@ -78,29 +79,25 @@ export default function Todo() {
     //     setTodos([...transformedData]);
     //     setIsLoaded(true);
     //  });
+  }, []);
 
-    
-
-  },[])
-
-  
-  const onTodoAdded = (todoTitle) => {
+  const onTodoAdded = todoTitle => {
     let newTodo = {
       title: todoTitle,
       completed: false,
       id: +new Date()
-    }
+    };
 
     setTodos([newTodo, ...todos]);
-  }
+  };
 
-  const onTodoDelete = (todo) => {
+  const onTodoDelete = todo => {
     let remainingTodos = todos.filter(t => {
-      return t.id != todo.id
+      return t.id != todo.id;
     });
 
     setTodos([...remainingTodos]);
-  }
+  };
 
   function onTodoEdit(title, todoId) {
     // alert(`${title} - ${todoId}`);
@@ -111,11 +108,11 @@ export default function Todo() {
       return todo;
     });
 
-    setTodos([...updatedTodos])
+    setTodos([...updatedTodos]);
   }
 
   // Toggle todo between completed and not completed
-  const onToggleTodo = (todo) => {
+  const onToggleTodo = todo => {
     let updatedTodos = todos.map(t => {
       if (todo.id == t.id) {
         todo.completed = !todo.completed;
@@ -124,9 +121,9 @@ export default function Todo() {
     });
 
     setTodos([...updatedTodos]);
-  }
+  };
 
-  const onToggleBookmark = (todo) => {
+  const onToggleBookmark = todo => {
     let updatedTodos = todos.map(t => {
       if (todo.id == t.id) {
         todo.bookmarked = !todo.bookmarked;
@@ -135,33 +132,32 @@ export default function Todo() {
     });
 
     setTodos([...updatedTodos]);
-  }
+  };
 
-  
   const onFilterClear = () => {
     setFilteredTodos([]);
     setFilter("all");
-  }
-  
+  };
+
   const onFilterBookmark = () => {
     const bookmarkedTodos = todos.filter(t => t.bookmarked);
     setFilteredTodos([...bookmarkedTodos]);
     setFilter("bookmarked");
-  }
+  };
 
   const onFilterCompleted = () => {
     const completedTodos = todos.filter(t => t.completed);
     setFilteredTodos([...completedTodos]);
     setFilter("completed");
-  }
+  };
 
   const onFilterInComplete = () => {
     const incompleteTodos = todos.filter(t => !t.completed);
     setFilteredTodos([...incompleteTodos]);
     setFilter("incomplete");
-  }
+  };
 
-  // Refresh filters if todos/ changes like added, 
+  // Refresh filters if todos/ changes like added,
   //  bookmarked, mark as complete etc.
   //  (any code with if/else can be optimized using common patterns)
   useEffect(() => {
@@ -172,7 +168,15 @@ export default function Todo() {
     } else if (filter == "incomplete") {
       onFilterInComplete();
     }
-  }, [todos])
+  }, [todos]);
+
+  const toggleTheme = () => {
+    //This should update the theme in context
+    setGlobalData({
+      ...global_data,
+      theme: global_data.theme === "dark" ? "light" : "dark"
+    });
+  };
 
   let todoData = filter == "all" ? todos : filteredTodos;
 
@@ -180,25 +184,33 @@ export default function Todo() {
     <TodoApp>
       <div className="container mt-5 vh-100">
         <h2>Todos</h2>
+        <div>
+          <input
+            type="button"
+            value={`Toggle Theme- ${global_data.theme}`}
+            onClick={toggleTheme}
+          />
+        </div>
         <TodoForm onTodoAdded={onTodoAdded} />
-        <TodoFilter 
-          onFilterBookmark ={onFilterBookmark}
-            onFilterClear = {onFilterClear}
-            onFilterCompleted = {onFilterCompleted}
-            onFilterInComplete = {onFilterInComplete}
+        <TodoFilter
+          onFilterBookmark={onFilterBookmark}
+          onFilterClear={onFilterClear}
+          onFilterCompleted={onFilterCompleted}
+          onFilterInComplete={onFilterInComplete}
         />
 
-        { !isLoaded && <h4>Loading...</h4>}
-        { isLoaded &&
-          <TodoList 
+        {!isLoaded && <h4>Loading...</h4>}
+        {isLoaded && (
+          <TodoList
             className="animate__animated animate__swing"
-            data={todoData} 
+            data={todoData}
             onTodoEdit={onTodoEdit}
-            onToggleTodo = {onToggleTodo}
-            onToggleBookmark = {onToggleBookmark}
-            onTodoDelete={onTodoDelete} />
-        }
+            onToggleTodo={onToggleTodo}
+            onToggleBookmark={onToggleBookmark}
+            onTodoDelete={onTodoDelete}
+          />
+        )}
       </div>
     </TodoApp>
-  )
+  );
 }

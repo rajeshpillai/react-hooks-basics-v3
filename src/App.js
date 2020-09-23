@@ -1,65 +1,79 @@
-import React, {useContext} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './App.css';
+import React, { useContext, useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "./App.css";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Counter from './components/counter';
-import Layout from './pages/layout';
-import MultipleStateUpdate from './components/stateupdate-multiple';
-import MultipleStatePropsUpdate from './components/state-multiple-props-update';
-import UseEffectDemo from './components/useeffect-demo';
-import Todo from './pages/todo';
+import Counter from "./components/counter";
+import Layout from "./pages/layout";
+import MultipleStateUpdate from "./components/stateupdate-multiple";
+import MultipleStatePropsUpdate from "./components/state-multiple-props-update";
+import UseEffectDemo from "./components/useeffect-demo";
+import Todo from "./pages/todo";
 
-import GlobalContext from './context/global-context';
+import GlobalContext from "./context/global-context";
+
+import PvContext from "./context/context";
+import { tsExternalModuleReference } from "@babel/types";
+
+const APP_DATA = {
+  theme: "dark", // dark or light
+  language: "english"
+};
 
 function App() {
-  const GlobalData = useContext(GlobalContext);
+  // const GlobalData = useContext(GlobalContext);
+  const [global_data, setGlobalData] = useState(APP_DATA);
+
+  // useEffect(() => {
+  //   setGlobalData({
+  //     ...global_data,
+  //     theme: "new Theme"
+  //   });
+  // }, []);
+
   return (
     <div className="container-fluid">
-      {GlobalData.language} - {GlobalData.theme}
-      <Router>
-        <Layout />
-       
-        <div className="content">
-          <Switch>
-            <Route path ="/" exact>
-               <h1>Hello React</h1>
-            </Route>
-            
-            <Route path ="/todo">
-               <Todo/>
-            </Route>
+      <PvContext.Provider value={{ global_data, setGlobalData }}>
+        {/* {GlobalData.language} - {GlobalData.theme} */}
+        {/* {APP_DATA.language} - {APP_DATA.theme} */}
+        {global_data.language} - {global_data.theme}
+        <Router>
+          <Layout />
 
+          <div className="content">
+            <Switch>
+              <Route path="/" exact>
+                <h1>Hello React</h1>
+              </Route>
 
-            <Route path ="/multple-state">
-               <MultipleStateUpdate/>
-            </Route>
+              <Route path="/todo">
+                <Todo />
+              </Route>
 
-            <Route path ="/multple-state-props">
-               <MultipleStatePropsUpdate/>
-            </Route>
-            
-            <Route path ="/useeffect">
-               <UseEffectDemo />
-            </Route>
+              <Route path="/multple-state">
+                <MultipleStateUpdate />
+              </Route>
 
-            <Route path="/counter">
+              <Route path="/multple-state-props">
+                <MultipleStatePropsUpdate />
+              </Route>
+
+              <Route path="/useeffect">
+                <UseEffectDemo />
+              </Route>
+
+              <Route path="/counter">
                 <Counter />
-            </Route>
-          </Switch>  
-        </div>          
-      </Router>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </PvContext.Provider>
     </div>
   );
 }
 
 export default App;
-
-
