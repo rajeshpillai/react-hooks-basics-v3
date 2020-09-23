@@ -4,7 +4,8 @@ import TodoForm from "../features/todo-form";
 import TodoList from "../features/todo-list";
 import TodoFilter from "../features/todo-filter";
 
-import TodoContext from "../context/todo-context";
+// import named export
+import {TodoContext} from "../context/todo-context";
 
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 

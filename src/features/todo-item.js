@@ -1,6 +1,6 @@
 import React, {useState, useRef, useContext} from 'react';
 import ProgressBar from '../components/progress-bar';
-import TodoContext from '../context/todo-context';
+import {TodoContext} from '../context/todo-context';
 
 export default function TodoItem({todo}) {
   
