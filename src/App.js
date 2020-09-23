@@ -12,6 +12,7 @@ import MultipleStateUpdate from "./components/stateupdate-multiple";
 import MultipleStatePropsUpdate from "./components/state-multiple-props-update";
 import UseEffectDemo from "./components/useeffect-demo";
 import Todo from "./pages/todo";
+import UseReducerDemo from "./pages/usereducer-demo";
 
 import GlobalContext from "./context/global-context";
 
@@ -45,6 +46,10 @@ function App() {
 
             <Route path="/todo">
               <Todo />
+            </Route>
+
+            <Route path="/usereducer">
+              <UseReducerDemo />
             </Route>
 
             <Route path="/multple-state">
