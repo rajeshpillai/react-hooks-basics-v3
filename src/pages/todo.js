@@ -31,6 +31,7 @@ export default function Todo() {
   //   or we can use built in FETCH API
   useEffect(()=> {
     // let resultPromise = fetch(API_TODOS);
+    
     // let response = resultPromise.then(response => {
     //   return response.json();  // This is also a promise
     // })
