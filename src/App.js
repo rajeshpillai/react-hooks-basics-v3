@@ -15,6 +15,7 @@ import Todo from "./pages/todo";
 import UseReducerDemo from "./pages/usereducer-demo";
 
 import GlobalContext from "./context/global-context";
+import { useDocumentTitle } from "./hooks/use-document-title";
 
 // const APP_DATA = {
 //   theme: "dark", // dark or light
@@ -23,6 +24,7 @@ import GlobalContext from "./context/global-context";
 
 function App() {
   const GlobalData = useContext(GlobalContext);
+  useDocumentTitle("Hello react");
 
   // useEffect(() => {
   //   setGlobalData({

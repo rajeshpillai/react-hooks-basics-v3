@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-
+import {useDocumentTitle} from '../hooks/use-document-title';
 
 // Reducer function (this should be in separate file)
 // Two parameter
@@ -43,6 +43,8 @@ export default function UseReducerDemo() {
 
   // Convention is to name updater function as "dispatch"
   const [state, dispatch] = useReducer(counterReducer, DEFAULT_STATE)
+
+  useDocumentTitle("Use Reducer Demo");
 
   const increment = () => {
     dispatch({
