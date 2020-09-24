@@ -35,13 +35,14 @@ export default class TodoClassComponent extends Component {
   // state = {
   //   todos: DEFAULT_STATE
   // }
-  
   // OR
   constructor() {
     super();
     this.state = {
       todos: DEFAULT_STATE
     }
+
+    // this.onToggleCompleted = this.onToggleCompleted.bind(this);
   }
 
   onToggleCompleted = (todo) => {
@@ -63,7 +64,8 @@ export default class TodoClassComponent extends Component {
         {
           this.state.todos.map(todo => {
             return (
-              <li onDoubleClick={() => {this.onToggleCompleted(todo)}}>
+              <li 
+                onDoubleClick={()=> this.onToggleCompleted(todo)}>
                 {todo.title}
                 | <span>{todo.completed.toString()}</span>
               </li>
