@@ -12,7 +12,9 @@ export default function Layout() {
       <button class="navbar-toggler" type="button" 
           data-toggle="collapse" 
           data-target="#top-nav" 
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarSupportedContent" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div id="top-nav" className="collapse navbar-collapse">

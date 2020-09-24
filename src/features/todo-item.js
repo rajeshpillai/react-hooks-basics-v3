@@ -1,5 +1,6 @@
 import React, {useState, useRef, useContext} from 'react';
 import ProgressBar from '../components/progress-bar';
+import StarRating from '../components/starrating';
 import {TodoContext} from '../context/todo-context';
 
 export default function TodoItem({todo}) {
@@ -45,6 +46,10 @@ export default function TodoItem({todo}) {
     todoProvider.onToggleBookmark(todo);
   }
 
+  const handleRatingChanged = (rating) => {
+    todoProvider.onRatingChanged(todo.id, rating);
+  }
+
   let bookmarkClass = todo.bookmarked 
       ? "fas fa-bookmark animate__animated animate__swing" : "far fa-bookmark";
 
@@ -56,6 +61,11 @@ export default function TodoItem({todo}) {
           <span onDoubleClick={toggleTodo} className="todo-title">{todo.title}</span>
           <i onClick={toggleBookmark} 
               className={`p-4 ${bookmarkClass}`}></i>
+          <StarRating 
+            count={5} 
+            value={todo.rating}
+            onChange={handleRatingChanged}
+          />
         </div>
       }
 

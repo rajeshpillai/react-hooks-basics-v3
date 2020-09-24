@@ -52,6 +52,7 @@ export default function Todo() {
     let transformedData = response.map(d => {
       d.percentage_completed = randomFromRange(25, 100);
       d.bookmarked = false;
+      d.rating = 3;
       return d;
     });
     setTodos([...transformedData]);
@@ -177,13 +178,25 @@ export default function Todo() {
     });
   };
 
+  const onRatingChanged = (todoId, rating) => {
+    let updatedTodos = todos.map(t => {
+      if (todoId == t.id) {
+        t.rating = rating;
+      }
+      return t;
+    });
+
+    setTodos([...updatedTodos]);
+  }
+
   let todoData = filter == "all" ? todos : filteredTodos;
 
   const todoProvider = {
     onTodoDelete: onTodoDelete,
     onToggleTodo: onToggleTodo,
     onTodoEdit,
-    onToggleBookmark
+    onToggleBookmark,
+    onRatingChanged
   }
 
   return (
