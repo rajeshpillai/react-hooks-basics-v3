@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './star.css';
 
 export default function StarRating({
     count, 

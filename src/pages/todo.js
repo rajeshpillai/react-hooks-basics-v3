@@ -8,6 +8,8 @@ import TodoFilter from "../features/todo-filter";
 import {TodoContext} from "../context/todo-context";
 import {useFetch} from '../hooks/use-fetch';
 
+
+
 const API_TODOS = "https://jsonplaceholder.typicode.com/todos/";
 
 const randomFromRange = (min, max) => {
@@ -52,7 +54,7 @@ export default function Todo() {
     let transformedData = response.map(d => {
       d.percentage_completed = randomFromRange(25, 100);
       d.bookmarked = false;
-      d.rating = 3;
+      // d.rating = 3;
       return d;
     });
     setTodos([...transformedData]);
