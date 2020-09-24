@@ -20,6 +20,7 @@ export default function Layout() {
       <div id="top-nav" className="collapse navbar-collapse">
         <NavLink className="navbar-brand" to="/todo">Todo</NavLink>
         <NavLink className="navbar-brand" to="/usereducer">useReducer Demo</NavLink>
+        <NavLink className="navbar-brand" to="/classcomp">Class Component Demo</NavLink>
         <NavLink className="navbar-brand" to="/counter">Counter</NavLink>
         <NavLink className="navbar-brand" to="/multple-state">Multiple State Update</NavLink>
         <NavLink className="navbar-brand" to="/multple-state-props">Multiple State Props Update</NavLink>

@@ -19,6 +19,7 @@ import UseReducerDemo from "./pages/usereducer-demo";
 
 import GlobalContext from "./context/global-context";
 import { useDocumentTitle } from "./hooks/use-document-title";
+import TodoClassComponent from "./pages/todo-class-comp-demo";
 
 // const APP_DATA = {
 //   theme: "dark", // dark or light
@@ -55,6 +56,10 @@ function App() {
 
             <Route path="/usereducer">
               <UseReducerDemo />
+            </Route>
+
+            <Route path="/classcomp">
+              <TodoClassComponent />
             </Route>
 
             <Route path="/multple-state">
