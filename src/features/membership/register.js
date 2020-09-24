@@ -4,11 +4,14 @@ import {useFetch} from '../../hooks/use-fetch';
 
 const API_SESSIONS = "http://localhost:4000/sessions";
 
-export default function Login() {
+export default function Register() {
 
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    phone: "",
+    date_of_birth: "",
+    country: ""
   });
 
   const {isLoading, response, error, doFetch} = 
@@ -74,7 +77,33 @@ export default function Login() {
           name="password"
           className="form-control" />
       </div>
-      <button>Sign in</button>
+
+      <div className="form-group">
+        <label>Country</label>
+        <input type="text" 
+          value={user.phone}
+          onChange= {handleChange}
+          name="phone"
+          className="form-control" />
+      </div>
+
+      <div className="form-group">
+        <label>Country</label>
+        <input type="text" 
+          value={user.country}
+          onChange= {handleChange}
+          name="country"
+          className="form-control" />
+      </div>
+      <div className="form-group">
+        <label>Country</label>
+        <input type="date" 
+          value={user.date_of_birth}
+          onChange= {handleChange}
+          name="date_of_birth"
+          className="form-control" />
+      </div>
+      <button>Register</button>
     </form>
   )
 }

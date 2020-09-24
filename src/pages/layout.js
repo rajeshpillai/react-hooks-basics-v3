@@ -1,14 +1,22 @@
 import React from 'react';
 
 import {
-  NavLink
+  NavLink, Redirect
 } from 'react-router-dom';
 
 
 export default function Layout() {
+  let token = localStorage.getItem("MEM_AUTH_TOKEN");
+
+  const handleLogout = () => {
+    localStorage.removeItem("MEM_AUTH_TOKEN");
+    // return <Redirect to="/membership" />
+  }
+
   return (
     <nav className="navbar navbar-light navbar-expand-lg bg-success">
       <NavLink  exact className="navbar-brand" to="/">Home</NavLink>
+      { token && <a onClick={handleLogout} className="btn btn-warning" href="#">logout</a>}
       <button class="navbar-toggler" type="button" 
           data-toggle="collapse" 
           data-target="#top-nav" 
